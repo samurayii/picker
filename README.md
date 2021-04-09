@@ -1,3 +1,3 @@
-# Template app.
+# Picker
 
-template. [Документация](docs/README.md)
+Сервис для автоматизированной сборки docker-compose. [Документация](docs/README.md)

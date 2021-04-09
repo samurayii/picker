@@ -1,10 +1,12 @@
 FROM ubuntu:18.04
 
-ENV APP_NAME "app-template"
+ENV APP_NAME "picker"
+ENV DOCKER_VERSION=19.03.13
+ENV NODE_VERSION=14
 
 RUN apt-get update && \
     apt-get install -y curl bash && \
-    curl -sL https://deb.nodesource.com/setup_12.x | bash && \
+    curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash && \
     apt-get install -y nodejs && \
     node -v && \
     apt-get clean && \
