@@ -4,7 +4,7 @@
     timestamp = "none"  # выводить время лога (none, time или full)
     type = true         # выводить тип лога (true или false)
 
-[authorization]                     # настрока авторизации
+[authorization]                     # настройка авторизации
     [[authorization.users]]         # массив пользователей
         username = "username"       # имя пользователя
         password = "password"       # пароль пользователя
@@ -35,3 +35,9 @@
         urlencoded = true               # парсинг данных urlencoded
         json_strict = true              # строгий режим парсинга json
         methods = ["POST"]              # список методов для парсинга
+
+[data]                          # настройка данных для сборки
+    templates = "templates"     # папка с шаблонами (только hbs)
+    store = "store"             # папка с состояниями проектов
+    catalog = "catalog"         # папка с результатами сборки
+    states = []                 # массив переменных по умолчанию (только json)

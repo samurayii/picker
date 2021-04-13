@@ -2,7 +2,7 @@
 
 ## Информация
 
-template. 
+Сервис для автоматизированной сборки docker-compose.
 
 ## Оглавление
 
@@ -33,6 +33,7 @@ template.
 - **authorization** - настрока авторизации (переменная среды: PICKER_AUTHORIZATION)
 - **api** - настройка API (переменная среды: PICKER_API)
 - **api.parsing** - настройка парсинга (пакет: https://github.com/dlau/koa-body#readme, переменная среды: PICKER_API_PARSING)
+- **data** - настройка данных для сборки (переменная среды: PICKER_DATA)
 
 ### Пример файла конфигурации config.toml
 
@@ -40,10 +41,10 @@ template.
 [logger]                # настройка логгера
     mode = "prod"       # режим (prod или dev или debug)
     enable = true       # активация логгера
-    timestamp = false   # выводить время лога (true или false)
+    timestamp = "none"  # выводить время лога (none, time или full)
     type = true         # выводить тип лога (true или false)
 
-[authorization]                     # настрока авторизации
+[authorization]                     # настройка авторизации
     [[authorization.users]]         # массив пользователей
         username = "username"       # имя пользователя
         password = "password"       # пароль пользователя
@@ -75,6 +76,11 @@ template.
         json_strict = true              # строгий режим парсинга json
         methods = ["POST"]              # список методов для парсинга
 
+[data]                          # настройка данных для сборки
+    templates = "templates"     # папка с шаблонами (только hbs)
+    store = "store"             # папка с состояниями проектов
+    catalog = "catalog"         # папка с результатами сборки
+    states = []                 # массив переменных по умолчанию (только json)
 ```
 
 ### Таблица параметров конфигурации
@@ -108,6 +114,10 @@ template.
 | api.parsing.urlencoded | логический | true | парсинг данных urlencoded |
 | api.parsing.json_strict | логический | true | строгий режим парсинга json |
 | api.parsing.methods | строка[] | ["POST"] | список методов для парсинга POST, PUT и/или PATCH |
+| data.templates | строка | templates | папка с шаблонами |
+| data.store | строка | store | папка с состояниями проектов |
+| data.catalog | строка | catalog | папка с результатами сборки |
+| data.states | строка[] | [] | массив переменных по умолчанию (только json) |
 
 ### Настройка через переменные среды
 

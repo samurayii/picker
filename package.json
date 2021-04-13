@@ -1,6 +1,6 @@
 {
     "name": "picker",
-    "version": "0.0.1",
+    "version": "1.0.1",
     "description": "Docker-compose automated build service",
     "main": "app.js",
     "docker_image": "samuray/picker",
@@ -66,6 +66,7 @@
         "chalk": "^4.1.0",
         "commander": "^7.2.0",
         "di-ts-decorators": "0.0.3",
+        "handlebars": "^4.7.7",
         "json-from-default-schema": "^0.1.4",
         "jtomler": "^0.3.6",
         "koa-body": "^4.2.0",

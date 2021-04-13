@@ -244,11 +244,57 @@
                 "env",
                 "parsing"
             ]
+        },
+        "data": {
+            "type": "object",
+            "default": {},
+            "env": "PICKER_DATA",
+            "properties": {
+                "templates": {
+                    "type": "string",
+                    "default": "templates",
+                    "minLength": 1,
+                    "maxLength": 256,
+                    "env": "PICKER_DATA_TEMPLATES"
+                },
+                "catalog": {
+                    "type": "string",
+                    "default": "catalog",
+                    "minLength": 1,
+                    "maxLength": 256,
+                    "env": "PICKER_DATA_CATALOG"
+                },
+                "store": {
+                    "type": "string",
+                    "default": "store",
+                    "minLength": 1,
+                    "maxLength": 256,
+                    "env": "PICKER_DATA_STORE"
+                },
+                "states": {
+                    "type": "array",
+                    "default": [],
+                    "env": "PICKER_DATA_STATES",
+                    "items": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 256
+                    },
+                    "minItems": 0
+                }
+            },
+            "required": [
+                "templates",
+                "store",
+                "states",
+                "catalog"
+            ]
         }
     },
     "required": [
         "logger",
         "authorization",
-        "api"
+        "api",
+        "data"
     ]
 }

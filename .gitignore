@@ -11,3 +11,7 @@ docker-build/app
 docker-build/package.json
 !docker-build/config.toml
 run.txt
+templates
+store
+default
+catalog

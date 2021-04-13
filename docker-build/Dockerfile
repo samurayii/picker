@@ -29,5 +29,5 @@ COPY app /${APP_NAME}
 COPY config.toml /${APP_NAME}/config.toml
 
 RUN cd /${APP_NAME} && \
-    npm install --only=production && \
+    npm ci && \
     node app.js -v
