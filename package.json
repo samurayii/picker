@@ -1,6 +1,6 @@
 {
     "name": "picker",
-    "version": "1.0.1",
+    "version": "0.1.1",
     "description": "Docker-compose automated build service",
     "main": "app.js",
     "docker_image": "samuray/picker",
