@@ -88,7 +88,7 @@ export class DataCollector implements IDataCollector {
                 if (/\.json$/.test(file_path)) {
                     
                     const state: IState = JSON.parse(fs.readFileSync(file_path).toString());
-                    const id = file_path.replace(this._full_folder_path, "").replace(/(^\/|\/$|^\\|\\$)/i, "").replace(/\.json$/i,"").replace(/\\/i, "/");
+                    const id = file_path.replace(this._full_folder_path, "").replace(/(^\/|\/$|^\\|\\$)/ig, "").replace(/\.json$/i,"").replace(/\\/ig, "/");
 
                     this._states[id] = state;
 

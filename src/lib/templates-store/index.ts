@@ -59,7 +59,7 @@ export class TemplatesStore implements ITemplatesStore {
 
         for (const file_path of files) {
 
-            const id = file_path.replace(full_folder_path, "").replace(/(^\/|\/$|^\\|\\$)/i, "").replace(/\\/ig, "/").replace(/\.hbs$/, "");
+            const id = file_path.replace(full_folder_path, "").replace(/(^\/|\/$|^\\|\\$)/ig, "").replace(/\\/ig, "/").replace(/\.hbs$/ig, "");
             const body = fs.readFileSync(file_path).toString();
 
             this._files_list[id] = {

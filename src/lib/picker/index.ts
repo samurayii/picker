@@ -61,8 +61,8 @@ export class Picker implements IPicker {
 
         for (const file_path of files) {
 
-            const id = path.dirname(file_path.replace(this._full_folder_path, "").replace(/(^\/|\/$|^\\|\\$)/i, "").replace(/\\/ig, "/"));
-            const version = path.basename(file_path.replace(this._full_folder_path, "").replace(/(^\/|\/$|^\\|\\$)/i, "").replace(/\\/ig, "/")).replace(/\.(yml|yaml)$/i, "");
+            const id = path.dirname(file_path.replace(this._full_folder_path, "").replace(/(^\/|\/$|^\\|\\$)/ig, "").replace(/\\/ig, "/"));
+            const version = path.basename(file_path.replace(this._full_folder_path, "").replace(/(^\/|\/$|^\\|\\$)/ig, "").replace(/\\/ig, "/")).replace(/\.(yml|yaml)$/ig, "");
             const body = fs.readFileSync(file_path);
             const hash = crypto.createHash("md5").update(body).digest("hex");
 
