@@ -18,7 +18,7 @@ export class ApiState {
     }
 
     @Get("/(.*)/set/:key/(.*)", "api-server")
-    async add(ctx: Context): Promise<void> {
+    async add (ctx: Context): Promise<void> {
 
         const id = ctx.params[0];
         const key = ctx.params.key;
@@ -40,7 +40,36 @@ export class ApiState {
 
         ctx.body = { 
             status: "success",
-            message: `Key "${key}" added to "${id}" project`
+            message: `Key "${key}" added/updated to "${id}" project`
+        };
+
+        ctx.status = 200;
+
+    }
+
+    @Get("/(.*)/remove/:key", "api-server")
+    async remove (ctx: Context): Promise<void> {
+
+        const id = ctx.params[0];
+        const key = ctx.params.key;
+
+        if (/^[-0-9a-z_]*$/i.test(key) === false) {
+
+            ctx.body = { 
+                status: "fail",
+                message: `Key "${key}" does not match regexp "/^[-0-9a-Z_]*$/i"`
+            };
+    
+            ctx.status = 200;
+
+            return;
+        }
+
+        this._data_collector.remove(id, key);
+
+        ctx.body = { 
+            status: "success",
+            message: `Key "${key}" remove from "${id}" project`
         };
 
         ctx.status = 200;

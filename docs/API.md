@@ -20,7 +20,8 @@
 | /v1/project/${id}?raw=true | GET | 200 | получить информацию о проекте по ключу (в формате raw) | [пример](#v1_project_id_raw) |
 | /v1/states | GET | 200 | получить список состояний проектов | [пример](#v1_states) |
 | /v1/state/${id} | GET | 200 | получить информацию о состоянии проекта по ключу | [пример](#v1_state_id) |
-| /v1/state/${id}/set/${key}/${value} | GET | 200 | задать ключ состояния для проекта | [пример](#v1_state_id_key) |
+| /v1/state/${id}/set/${key}/${value} | GET | 200 | задать ключ состояния для проекта | [пример](#v1_state_id_key_add) |
+| /v1/state/${id}/remove/${key}/${value} | GET | 200 | удалить ключ состояния для проекта | [пример](#v1_state_id_key_remove) |
 | /v1/packages | GET | 200 | получить список пакетов | [пример](#v1_packages) |
 | /v1/package/${id} | GET | 200 | получить информацию о пакете | [пример](#v1_package_id) |
 | /v1/package/${id}/collect | GET | 200 | получить информацию о пакете | [пример](#v1_package_id_collect) |
@@ -154,12 +155,21 @@ networks:
 }
 ```
 
-### <a name="v1_state_id_key"></a> Задать ключ состояния для проекта: /v1/state/${id}/set/${key}/${value}
+### <a name="v1_state_id_key_add"></a> Задать ключ состояния для проекта: /v1/state/${id}/set/${key}/${value}
 
 ```js
 {
     "status": "success",
-    "message": "Key \"key555\" added to \"msmz\" project"
+    "message": "Key \"key555\" added/updated to \"msmz\" project"
+}
+```
+
+### <a name="v1_state_id_key_remove"></a> Удалть ключ состояния для проекта: /v1/state/${id}/remove/${key}/${value}
+
+```js
+{
+    "status": "success",
+    "message": "Key \"key555\" remove from \"msmz\" project"
 }
 ```
 

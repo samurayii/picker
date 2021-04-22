@@ -147,6 +147,18 @@ export class DataCollector implements IDataCollector {
 
     }
 
+    remove (id_state: string, key: string): void {
+
+        if (this._states[id_state] === undefined) {
+            this._states[id_state] = {};
+        }
+
+        delete this._states[id_state][key];
+
+        this._save(id_state);
+
+    }
+
     _save (id_state: string): void {
 
         const full_file_path = path.resolve(this._full_folder_path, `${id_state}.json`);
