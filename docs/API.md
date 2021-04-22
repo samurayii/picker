@@ -24,8 +24,8 @@
 | /v1/state/${id}/remove/${key}/${value} | GET | 200 | удалить ключ состояния для проекта | [пример](#v1_state_id_key_remove) |
 | /v1/packages | GET | 200 | получить список пакетов | [пример](#v1_packages) |
 | /v1/package/${id} | GET | 200 | получить информацию о пакете | [пример](#v1_package_id) |
-| /v1/package/${id}/collect | GET | 200 | получить информацию о пакете | [пример](#v1_package_id_collect) |
-| /v1/package/${id}/collect?postfix | GET | 200 | получить информацию о пакете | [пример](#v1_package_id_collect) |
+| /v1/package/${id}/collect | GET | 200 | запустить сбор пакета | [пример](#v1_package_id_collect) |
+| /v1/package/${id}/collect?postfix=postfix | GET | 200 | запустить сбор пакета с постфиксом | [пример](#v1_package_id_collect_postfix) |
 
 ## Примеры ответов/запросов
 
@@ -190,11 +190,22 @@ networks:
 ```js
 {
     "status": "success",
+    "data": [
+        "0.0.1"
+    ]
+}
+```
+
+### <a name="v1_package_id_collect"></a> Запустить сбор пакета: /v1/package/${id}/collect
+
+```js
+{
+    "status": "success",
     "data": "0.0.1"
 }
 ```
 
-### <a name="v1_package_id_collect"></a> Получить информацию о пакете: /v1/package/${id}/collect
+### <a name="v1_package_id_collect_postfix"></a> Запустить сбор пакета с постфиксом: /v1/package/${id}/collect?postfix=postfix
 
 ```js
 {
