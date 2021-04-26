@@ -14,8 +14,13 @@ export interface IProjectPackage {
 }
 
 export interface IProjectPackageLatest {
-    prefix: string
     build_number: number
     version: string
     hash: string
+}
+
+export interface IPackage {
+    "x-package": {
+        version: string
+    }        
 }

@@ -2,8 +2,9 @@ import * as chalk from "chalk";
 import * as fs from "fs";
 import * as path from "path";
 import * as crypto from "crypto";
+import jtomler from "jtomler";
 import { ILogger } from "logger-flx";
-import { IPicker, IProjectPackage } from "./interfaces";
+import { IPackage, IPicker, IProjectPackage } from "./interfaces";
 import { IDataCollector } from "../data-collector";
 import { ITemplatesStore } from "../templates-store";
 import { ProjectPackage } from "./lib/project-package";
@@ -111,7 +112,7 @@ export class Picker implements IPicker {
         const check_data = this._data_collector.get(id_project);
         const latest_package = project_package.latest;
 
-        check_data["$version"] = latest_package.version;
+        check_data["$version"] = latest_package.build_number;
 
         const check_body = this._templates_store.compile(id_project, check_data);
         const check_hash = crypto.createHash("md5").update(check_body).digest("hex");
@@ -121,7 +122,7 @@ export class Picker implements IPicker {
             return latest_package.version;
         }
 
-        let version = `${latest_package.prefix}.${latest_package.build_number+1}`;
+        let version = `${latest_package.build_number+1}`;
         const data = this._data_collector.get(id_project);
 
         if (postfix !== undefined) {
@@ -130,11 +131,12 @@ export class Picker implements IPicker {
 
         data["$version"] = version;
 
-        this._logger.log(`[Picker] Collecting package whit version ${chalk.gray(data["$version"])} for project ${chalk.gray(id_project)}`, "dev");
+        this._logger.log(`[Picker] Collecting package whit dynamic version ${chalk.gray(data["$version"])} for project ${chalk.gray(id_project)}`, "dev");
 
         const body = this._templates_store.compile(id_project, data);
+        const body_json = <IPackage>jtomler(body.toString(), false);
         const hash = crypto.createHash("md5").update(body).digest("hex");
-        const full_file_path = path.resolve(this._full_folder_path, `${id_project}/${version}.yml`);
+        const full_file_path = path.resolve(this._full_folder_path, `${id_project}/${body_json["x-package"].version}.yml`);
         const dirname = path.dirname(full_file_path);
 
         if (fs.existsSync(dirname) === false) {
@@ -146,11 +148,11 @@ export class Picker implements IPicker {
 
         fs.writeFileSync(full_file_path, body);
 
-        project_package.addVersion(version, hash);
+        project_package.addVersion(body_json["x-package"].version, hash);
 
         this._logger.log(`[Picker] Created package file ${chalk.gray(full_file_path)} for project ${chalk.gray(id_project)}`, "dev");
 
-        return version;
+        return body_json["x-package"].version;
 
     }
 

@@ -29,7 +29,6 @@ export class ProjectPackage implements IProjectPackage {
     ) {
         this._versions = new Set();
         this._latest = {
-            prefix: "0.0",
             hash: "",
             version: "0.0.0",
             build_number: 0
@@ -65,7 +64,6 @@ export class ProjectPackage implements IProjectPackage {
             const args = version.match(/([0-9]+)\.([0-9]+)\.([0-9]+)(-.+|)/i);
 
             if (Array.isArray(args) === true) {
-                this._latest.prefix = `${args[1]}.${args[2]}`;
                 this._latest.build_number = parseInt(args[3]);
             }
 
