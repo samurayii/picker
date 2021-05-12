@@ -125,11 +125,18 @@ export class Picker implements IPicker {
         let version = `${latest_package.build_number+1}`;
         const data = this._data_collector.get(id_project);
 
+
+        this._logger.log(`[Picker] State of project ${chalk.gray(id_project)}:`, "debug");
+        this._logger.log(data, "debug");
+
         if (postfix !== undefined) {
             version = `${version}-${postfix}`;
         }
 
         data["$version"] = version;
+
+        this._logger.log(`[Picker] Result state for project ${chalk.gray(id_project)}:`, "debug");
+        this._logger.log(data, "debug");
 
         this._logger.log(`[Picker] Collecting package whit dynamic version ${chalk.gray(data["$version"])} for project ${chalk.gray(id_project)}`, "dev");
 
