@@ -127,7 +127,7 @@ export class Picker implements IPicker {
 
 
         this._logger.log(`[Picker] State of project ${chalk.gray(id_project)}:`, "debug");
-        this._logger.log(data, "debug");
+        this._logger.log(JSON.stringify(data, null, 4), "debug");
 
         if (postfix !== undefined) {
             version = `${version}-${postfix}`;
@@ -136,7 +136,7 @@ export class Picker implements IPicker {
         data["$version"] = version;
 
         this._logger.log(`[Picker] Result state for project ${chalk.gray(id_project)}:`, "debug");
-        this._logger.log(data, "debug");
+        this._logger.log(JSON.stringify(data, null, 4), "debug");
 
         this._logger.log(`[Picker] Collecting package whit dynamic version ${chalk.gray(data["$version"])} for project ${chalk.gray(id_project)}`, "dev");
 
